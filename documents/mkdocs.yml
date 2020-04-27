@@ -1,0 +1,49 @@
+site_name: Algorithm
+site_author: 'k.y'
+
+
+site_url: https://github.com/beidongjiedeguang/Algorithm
+repo_url: https://github.com/beidongjiedeguang/Algorithm
+
+repo_name: Algorithm
+
+nav:
+    - Home: 'index.md'
+    - Dynamic Programming:
+      - 原理: 'DynamicProgramming/原理.md'
+      - 最长递增子序列: 'DynamicProgramming/最长递增子序列.md'
+      - 凑硬币问题: 'DynamicProgramming/凑硬币问题.md'
+      - 0-1背包问题: 'DynamicProgramming/0-1背包问题.md'
+    - About: LICENSE.md
+
+plugins:
+    - search
+    - markdownextradata: {} # https://github.com/rosscdh/mkdocs-markdownextradata-plugin
+
+extra:
+  customer:                 # https://github.com/rosscdh/mkdocs-markdownextradata-plugin
+    name: Your name here
+    web: www.example.com
+    salt: salt.example.com
+ 
+markdown_extensions:
+    - extra
+    - mdx_math 
+    - tables
+    - fenced_code
+    - toc:
+        permalink: "#"
+        baselevel: 2
+        separator: "_"
+
+extra_javascript: 
+    - mathjaxhelper.js
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML
+
+theme: 
+    name: readthedocs # mkdocs
+    nav_style: dark
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - python
