@@ -72,10 +72,7 @@
     <a class="current" href="./">凑硬币问题</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#_1">凑硬币问题</a></li>
-    
-
-    <li class="toctree-l3"><a href="#_2">附：</a></li>
+    <li class="toctree-l3"><a href="#_1">附：</a></li>
     
 
     </ul>
@@ -130,8 +127,7 @@
           <div role="main">
             <div class="section">
               
-                <h4 id="_1">凑硬币问题<a class="headerlink" href="#_1" title="Permanent link">#</a></h4>
-<blockquote>
+                <blockquote>
 <p>给定 <code>k</code> 种面值的硬币，面值分别为 <code>v1, v2 ... vk</code>，每种硬币的数量无限，再给一个总金&gt; 额 <code>T</code>，请问<strong>最少</strong>需要几枚硬币凑出这个金额，如果不可能凑出，算法返回 -1 。</p>
 </blockquote>
 <p>思路：</p>
@@ -255,7 +251,7 @@ def f(T, V):
     return hash[T]
 </code></pre>
 
-<h4 id="_2">附：<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
+<h4 id="_1">附：<a class="headerlink" href="#_1" title="Permanent link">#</a></h4>
 <p>将一个拥有K个元素的集合遍历N次的代码解决框架为：</p>
 <pre><code class="python"># 第一种：用N个for循环实现(很笨，遍历次数需要写死)
 for i in range(K):
