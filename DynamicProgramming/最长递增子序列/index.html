@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="k.y">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>最长递增子序列 - Algorithm</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6700\u957f\u9012\u589e\u5b50\u5e8f\u5217";
+    var mkdocs_page_input_path = "DynamicProgramming\\\u6700\u957f\u9012\u589e\u5b50\u5e8f\u5217.md";
+    var mkdocs_page_url = "/beidongjiedeguang/Algorithm/DynamicProgramming/\u6700\u957f\u9012\u589e\u5b50\u5e8f\u5217/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Algorithm</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Dynamic Programming</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../原理/">原理</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">最长递增子序列</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#_1">最长递增子序列</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../凑硬币问题/">凑硬币问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../0-1背包问题/">0-1背包问题</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../LICENSE/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Algorithm</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Dynamic Programming &raquo;</li>
+        
+      
+    
+    <li>最长递增子序列</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/beidongjiedeguang/Algorithm/edit/master/docs/DynamicProgramming/最长递增子序列.md"> Edit on Algorithm</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h4 id="_1">最长递增子序列<a class="headerlink" href="#_1" title="Permanent link">#</a></h4>
+<p>动态规划的核心设计思想是数学归纳法。</p>
+<blockquote>
+<p>最简单和常见的数学归纳法是证明当<em>n</em>等于任意一个自然数时某命题成立。证明分两步：</p>
+<ol>
+<li>证明当<em>n</em>= 1时命题成立。</li>
+<li>然后证明从n=m 成立可以推导出n=<em>m</em>+1 （<em>m</em>代表任意自然数）也成立，则命题得证。（这里实际应用的是<a href="https://baike.baidu.com/item/演绎推理">演绎推理</a>）</li>
+</ol>
+<p>这种方法的原理在于：首先证明在某个起点值时命题成立，然后证明从一个值到下一个值的过程有效。当这两点都已经证明，那么任意值都可以通过反复使用这个方法推导出来。把这个方法想成<a href="https://baike.baidu.com/item/多米诺效应">多米诺效应</a>也许更容易理解一些。</p>
+</blockquote>
+<p>应该说，数学归纳法与动态规划的本质是相同的。数学归纳法是从n=1开始向后迭代证明命题或者公式成立，递推是从n=1开始向后迭代计算命题的值。</p>
+<p>所以数学归纳法的证明方式是假设命题在n成立时如果能推导出n+1时也成立，则命题能得证；</p>
+<p>而动态规划的计算方式是 假设命题在n出的值我们已经得到，那么如果能通过n计算出n+1出的值，我们便可以通过初始值计算出所有的值。</p>
+<p><strong>例题：</strong></p>
+<blockquote>
+<p>给定一个无序的整数数组，找到其中最长上升子序列的长度。</p>
+<p>示例：</p>
+<p><code>输入： [10, 9, 2, 5, 3, 7, 101, 18] 
+输出：4 
+解释：最长上升子序列是[2, 3, 7, 101], 它的长度是4.</code></p>
+</blockquote>
+<p><font size=2><em>注：「子序列」和「子串」这两个名词的区别，子串必须是连续的，而子序列不一定是连续的。</em> </font></p>
+<p>思路：</p>
+<p>从这个整数数组的第一个位置开始，使用table数组来记录下该位置的最长序列长度。</p>
+<p>这样下一个位置的最长长度，只需找到在这个table中比该位置上的数小的最大长度即可。</p>
+<p>故用两个循环即可实现：</p>
+<pre><code class="python">def longSeq(Seq):
+    table = len(Seq) * [1]
+    for idx, i in enumerate(Seq):
+        for j in range(idx+1):
+            if Seq[j] &lt; i:
+                table[idx] = max(table[idx], table[j]+1)
+    return max(table)
+</code></pre>
+
+<p>以上代码复杂度为$O(n^2)$ </p>
+<p>因为上面代码中第二个循环在table中查找使用的是线性查找，显然可以替换为二分查找，这样便可将复杂度降为$O(n \log(n))$ 。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../凑硬币问题/" class="btn btn-neutral float-right" title="凑硬币问题">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../原理/" class="btn btn-neutral" title="原理"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../原理/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../凑硬币问题/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../mathjaxhelper.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

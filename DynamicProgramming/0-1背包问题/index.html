@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="k.y">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>0-1背包问题 - Algorithm</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "0-1\u80cc\u5305\u95ee\u9898";
+    var mkdocs_page_input_path = "DynamicProgramming\\0-1\u80cc\u5305\u95ee\u9898.md";
+    var mkdocs_page_url = "/beidongjiedeguang/Algorithm/DynamicProgramming/0-1\u80cc\u5305\u95ee\u9898/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Algorithm</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Dynamic Programming</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../原理/">原理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../最长递增子序列/">最长递增子序列</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../凑硬币问题/">凑硬币问题</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">0-1背包问题</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#0-1">0-1背包问题</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../LICENSE/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Algorithm</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Dynamic Programming &raquo;</li>
+        
+      
+    
+    <li>0-1背包问题</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/beidongjiedeguang/Algorithm/edit/master/docs/DynamicProgramming/0-1背包问题.md"> Edit on Algorithm</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h4 id="0-1">0-1背包问题<a class="headerlink" href="#0-1" title="Permanent link">#</a></h4>
+<blockquote>
+<p>问题描述：
+ 给定n种物品和一背包，物品$i$的重量是$w_i$，其价值为$v_i$，背包的容量(能承受总重量)为C。问应如何选择装入背包的物品（物品不能分割），使得装入背包中物品的总价值最大?</p>
+<p>其数学描述为：</p>
+</blockquote>
+<p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\max \sum_{i=1}^{n} v_{i} x_{i} \qquad s.t.
+\left \{
+\begin{array}{c}
+\sum_{i=1}^{n} w_{i} x_{i} \leq C \\
+x_{i} \in\{0,1\}, 1 \leq i \leq n
+\end{array}
+\right .
+\end{equation}
+</script>
+</p>
+<p>思路：</p>
+<p>在解答之前，我们先来看一下，如果n个物品如果对应n个不同的重量，那么它们一共可以组合出多少种重量？</p>
+<p>显然答案为 :
+<script type="math/tex; mode=display">
+C_n^0+C_n^1 + C_n^2 + C_n^3 + \cdots + C_n^n = \sum_{k=0}^{n}C_n^k
+</script>
+</p>
+<p>而我们知道根据二项式定理，$ x+y$的任意次幂可展开为：
+<script type="math/tex; mode=display">
+\begin{equation}
+(x+y)^{n}=\sum_{k=0}^{n}C_n^k x^{n-k} y^{k}
+=\sum_{k=0}^{n} C_n^k x^{k} y^{n-k}
+\end{equation}
+</script>
+于是 
+<script type="math/tex; mode=display">
+\begin{equation}
+(1+1)^n =\sum_{k=0}^{n}C_n^k
+\end{equation}
+</script>
+所以一共有$2^n$种不同组合的重量。</p>
+<p>首先可以容易分析出本题符合最优子结构特征，所以我们将所有子集的最优解用一个Table来表示，那么本问就应该是背包的容量与价值的最优子集table, <code>Table[C] = V</code>。  但是问题中要求给出具体转入哪些物品，所以这个Table就还应该与物品相联系：<code>Table[C]</code></p>
+<pre><code class="python">for i in range(1, n): # 物品共有n个
+    for c in range()
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../LICENSE/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../凑硬币问题/" class="btn btn-neutral" title="凑硬币问题"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../凑硬币问题/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../LICENSE/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../mathjaxhelper.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
