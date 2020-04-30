@@ -1,1 +1,1 @@
-# [Documents](https://beidongjiedeguang.github.io/Algorithm/)
+# [文档](https://beidongjiedeguang.github.io/Algorithm/)
