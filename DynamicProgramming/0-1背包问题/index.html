@@ -193,8 +193,9 @@ f(c, n-1), \quad ( w_n > c )\\
         return 0
     if W[n - 1] &gt; c:
         return f(n - 1, c)
-    return max(V[n - 1] + f(c - W[n - 1], n - 1),
-               opt(n - 1, c)
+    return max(f(n - 1, c),
+               V[n - 1] + f(n - 1, c - W[n - 1]) )
+
 </code></pre>
 
 <p>或者用table来储存结果:</p>
