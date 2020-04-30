@@ -76,7 +76,13 @@
     <a class="current" href="./">0-1背包问题</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#0-1">0-1背包问题</a></li>
+    <li class="toctree-l3"><a href="#_1">问题描述</a></li>
+    
+
+    <li class="toctree-l3"><a href="#_2">背景</a></li>
+    
+
+    <li class="toctree-l3"><a href="#_3">解答思路</a></li>
     
 
     </ul>
@@ -127,7 +133,7 @@
           <div role="main">
             <div class="section">
               
-                <h4 id="0-1">0-1背包问题<a class="headerlink" href="#0-1" title="Permanent link">#</a></h4>
+                <h4 id="_1">问题描述<a class="headerlink" href="#_1" title="Permanent link">#</a></h4>
 <blockquote>
 <p>问题描述：
  给定n种物品和一背包，物品$i$的重量是$w_i$，其价值为$v_i$，背包的容量(能承受总重量)为C。问应如何选择装入背包的物品（物品不能分割），使得装入背包中物品的总价值最大?</p>
@@ -146,7 +152,7 @@ x_{i} \in\{0,1\}, 1 \leq i \leq n
 \end{equation}
 </script>
 </p>
-<p>思路：</p>
+<h4 id="_2">背景<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
 <p>在解答之前，我们先来看一下，如果n个物品如果对应n个不同的重量，那么它们一共可以组合出多少种重量？</p>
 <p>显然答案为 :
 <script type="math/tex; mode=display">
@@ -166,10 +172,39 @@ C_n^0+C_n^1 + C_n^2 + C_n^3 + \cdots + C_n^n = \sum_{k=0}^{n}C_n^k
 (1+1)^n =\sum_{k=0}^{n}C_n^k
 \end{equation}
 </script>
-所以一共有$2^n$种不同组合的重量。</p>
-<p>首先可以容易分析出本题符合最优子结构特征，所以我们将所有子集的最优解用一个Table来表示，那么本问就应该是背包的容量与价值的最优子集table, <code>Table[C] = V</code>。  但是问题中要求给出具体转入哪些物品，所以这个Table就还应该与物品相联系：<code>Table[C]</code></p>
-<pre><code class="python">for i in range(1, n): # 物品共有n个
-    for c in range()
+所以一共有$2^n$种不同组合的重量。 这意味着什么我们之后再作解析。</p>
+<h4 id="_3">解答思路<a class="headerlink" href="#_3" title="Permanent link">#</a></h4>
+<p>首先可以容易分析出本题符合最优子结构特征，所以我们将所有子集的最优解用一个Table来表示，那么本问就应该是背包的容量与价值的最优子集<code>opt</code>, <code>opt[c] = v</code>。 我们可以尝试列出它的状态转移方程:
+<script type="math/tex; mode=display">
+\begin{equation}
+f(c, n) = 
+\left \{\begin{array}{l}
+0, \quad  (n=0, c=0)\\
+f(c, n-1), \quad ( w_n > c )\\
+\max\{f(c, n-1),\ f(c-w_{n-1}, n-1)+v_{n-1} \}, \quad (w_n \le c) 
+\end{array}
+\right .
+\label{method1}
+\end{equation}
+</script>
+代码:</p>
+<pre><code class="python">def f(n, c):
+    if n == 0 or c == 0:
+        return 0
+    if W[n - 1] &gt; c:
+        return f(n - 1, c)
+    return max(V[n - 1] + f(c - W[n - 1], n - 1),
+               opt(n - 1, c)
+</code></pre>
+
+<p>或者用table来储存结果:</p>
+<pre><code class="python">opt = [0]*n
+for n in range(1, N): # 物品共有N个
+    for c in range(1, C): # 总容量为C
+        if c - W[n-1] &lt; 0 :
+            opt[n][c] = opt[n-1][c]
+        opt[n][c] = max(opt[n-1][c], 
+                            opt[n-1][c-W[n-1]]+V[n-1])
 </code></pre>
               
             </div>
