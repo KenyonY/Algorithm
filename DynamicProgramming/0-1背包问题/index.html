@@ -174,7 +174,8 @@ C_n^0+C_n^1 + C_n^2 + C_n^3 + \cdots + C_n^n = \sum_{k=0}^{n}C_n^k
 </script>
 所以一共有$2^n$种不同组合的重量。 这意味着什么我们之后再作解析。</p>
 <h4 id="_3">解答思路<a class="headerlink" href="#_3" title="Permanent link">#</a></h4>
-<p>首先可以容易分析出本题符合最优子结构特征，所以我们将所有子集的最优解用一个Table来表示，那么本问就应该是背包的容量与价值的最优子集<code>opt</code>, <code>opt[c] = v</code>。 我们可以尝试列出它的状态转移方程:
+<p>首先可以容易分析出本题符合最优子结构特征，因为背包容量为C的最优解中一定包含了容量为$C-w_n$ 的最优解一定包含了$C-w_n-w_{n-1}$ 的最优解一定包含了......(这里有问题)</p>
+<p>
 <script type="math/tex; mode=display">
 \begin{equation}
 f(c, n) = 
